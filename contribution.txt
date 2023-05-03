@@ -1,0 +1,3 @@
+James: write up commentary of eda + data processing
+write up functions for data cleaning
+generate clean datasets 
