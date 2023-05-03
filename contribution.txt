@@ -1,3 +1,17 @@
-James: write up commentary of eda + data processing
+James: write up commentary of eda + data processing (standard scaler)
 write up functions for data cleaning
 generate clean datasets 
+
+Nancy: writing functions for the modeling part 
+Choose the best model function
+Write up the modeling notebook commentary
+Work with Hannah on the tests
+
+Hannah: Testing 
+license for the project
+make file
+
+Joselin:
+Jupyter book
+environment .yml file
+help make the main.ipynb file
