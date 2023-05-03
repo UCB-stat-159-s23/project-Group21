@@ -15,3 +15,4 @@ Joselin:
 Jupyter book
 environment .yml file
 help make the main.ipynb file
+binder at the end
