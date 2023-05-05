@@ -74,7 +74,9 @@ def choose_best_model(logisticRegr, clf, RF):
     inputs:
         - 3 models: logisticRegr, clf, RF
     outputs:
-        - model with best accuracy
+        - best_model = given by choose_best_model
+		- best_test_predictions = list of test predictions given by best model
+		- best_model_name = str of name of best model
     
     '''
     models = [logisticRegr, clf, RF]
