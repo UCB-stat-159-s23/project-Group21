@@ -1,3 +1,4 @@
+from sklearn import preprocessing
 from sklearn.preprocessing import StandardScaler
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.preprocessing import OneHotEncoder
