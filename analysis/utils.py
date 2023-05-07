@@ -66,7 +66,6 @@ def fit_models(x_train, y_train, x_test, y_test):
     
     return logisticRegr, clf, RF
     
-    
 from sklearn import datasets, metrics, model_selection, svm
 def choose_best_model(logisticRegr, clf, RF):
     '''
