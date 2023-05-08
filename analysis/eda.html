@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>EDA and Data Cleaning &#8212; My sample book</title>
   
@@ -44,6 +44,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
@@ -61,13 +62,12 @@ const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'analysis/eda';</script>
-    <link rel="canonical" href="/user/jhartanto1//proxy/absolute/8000/analysis/eda.html" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Data Modeling" href="modeling.html" />
     <link rel="prev" title="Heart Failure Prediction" href="../main.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -367,7 +367,7 @@ document.write(`
                 <article class="bd-article" role="main">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="eda-and-data-cleaning">
-<h1>EDA and Data Cleaning<a class="headerlink" href="#eda-and-data-cleaning" title="Permalink to this headline">#</a></h1>
+<h1>EDA and Data Cleaning<a class="headerlink" href="#eda-and-data-cleaning" title="Permalink to this heading">#</a></h1>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -378,7 +378,7 @@ document.write(`
 </div>
 </div>
 <section id="data-from-https-www-kaggle-com-datasets-fedesoriano-heart-failure-prediction">
-<h2>Data from <a class="reference external" href="https://www.kaggle.com/datasets/fedesoriano/heart-failure-prediction">https://www.kaggle.com/datasets/fedesoriano/heart-failure-prediction</a><a class="headerlink" href="#data-from-https-www-kaggle-com-datasets-fedesoriano-heart-failure-prediction" title="Permalink to this headline">#</a></h2>
+<h2>Data from <a class="reference external" href="https://www.kaggle.com/datasets/fedesoriano/heart-failure-prediction">https://www.kaggle.com/datasets/fedesoriano/heart-failure-prediction</a><a class="headerlink" href="#data-from-https-www-kaggle-com-datasets-fedesoriano-heart-failure-prediction" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import raw data</span>
@@ -502,7 +502,7 @@ document.write(`
 </div>
 </section>
 <section id="check-for-nan-values-in-columns">
-<h2>Check for NaN values in columns<a class="headerlink" href="#check-for-nan-values-in-columns" title="Permalink to this headline">#</a></h2>
+<h2>Check for NaN values in columns<a class="headerlink" href="#check-for-nan-values-in-columns" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nan_count</span> <span class="o">=</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
@@ -542,7 +542,7 @@ dtype: int64
 </div>
 </section>
 <section id="looking-at-class-distributions">
-<h2>Looking at class distributions<a class="headerlink" href="#looking-at-class-distributions" title="Permalink to this headline">#</a></h2>
+<h2>Looking at class distributions<a class="headerlink" href="#looking-at-class-distributions" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span><span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span><span class="n">ncols</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
@@ -576,16 +576,6 @@ dtype: int64
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ra</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">NameError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">6</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">ra</span>
-
-<span class="ne">NameError</span>: name &#39;ra&#39; is not defined
 </pre></div>
 </div>
 </div>
