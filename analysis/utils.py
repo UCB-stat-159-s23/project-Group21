@@ -67,7 +67,7 @@ def fit_models(x_train, y_train, x_test, y_test):
     return logisticRegr, clf, RF
     
 from sklearn import datasets, metrics, model_selection, svm
-def choose_best_model(logisticRegr, clf, RF):
+def choose_best_model(logisticRegr, clf, RF, x_test, y_test):
     '''
     this function chooses the model with the highest accuracy and returns it
     
@@ -100,7 +100,7 @@ def choose_best_model(logisticRegr, clf, RF):
     
 
 	
-def graph_confusion_roc(best_model, x_test, y_test, best_test_predictions, best_model_name):
+def graph_confusion_roc(best_model, x_test, y_test, best_test_predictions, best_model_name, root_dir ):
     '''
     this function
     creates graphs of roc curve and confusion matrix for the best model
@@ -109,9 +109,12 @@ def graph_confusion_roc(best_model, x_test, y_test, best_test_predictions, best_
         - best_model = given by choose_best_model
 		- best_test_predictions = list of test predictions given by best model
 		- best_model_name = str of name of best model
+		- x_test
+		- y_test
+		- root_dir = str of root directory 
     outputs:
-        - graph of roc curve, saved to ./figures
-        - graph of confusion matrix, saved to ./figures
+        - graph of roc curve, saved to root_dir/figures
+        - graph of confusion matrix, saved to root_dir/figures
 
     '''
 
@@ -123,9 +126,11 @@ def graph_confusion_roc(best_model, x_test, y_test, best_test_predictions, best_
     sns.heatmap(cm, annot=True, fmt=".3f", linewidths=.5, square = True, cmap = 'Blues_r')
     plt.ylabel('Actual label')
     plt.xlabel('Predicted label')
+
+    score = best_model.score(x_test,y_test)
     all_sample_title = 'Accuracy Score of Best Model: {0}'.format(score)
     plt.title(all_sample_title, size = 15)
-    plt.savefig('../figures/'+ best_model_name + '_confusion_matrix')
+    plt.savefig(root_dir + '/figures/'+ best_model_name + '_confusion_matrix')
     plt.show()
 
     
@@ -135,6 +140,6 @@ def graph_confusion_roc(best_model, x_test, y_test, best_test_predictions, best_
     plt.title("ROC curve")
     plt.xlabel("TPR")
     plt.ylabel("FPR")
-    plt.savefig('../figures/'+ best_model_name + '_ROC_curve')
+    plt.savefig(root_dir + '/figures/'+ best_model_name + '_ROC_curve')
     plt.show()
     
