@@ -15,9 +15,9 @@ env:
 ## html : Build the Jupyterbook
 .PHONY : html
 html:
-	jupyterbook build .
+	jupyter-book build .
 
 ## all : Run all notebooks
 .PHONY : all
 all :
-	jupyterbook execute main.ipynb
+	jupyter run main.ipynb
