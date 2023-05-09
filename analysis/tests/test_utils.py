@@ -24,7 +24,7 @@ from os.path import exists
 
 
 # read in data and add code that is necessary to test fit_models function
-raw_data = pd.read_csv('../data/heart.csv')
+raw_data = pd.read_csv('./data/heart.csv')
 categorical_columns= ['Sex', 'ChestPainType','RestingECG', 'ExerciseAngina', 'ST_Slope' ]
 categorical_data = raw_data[categorical_columns]
 enc = OneHotEncoder(sparse=False).fit(categorical_data)
@@ -54,9 +54,26 @@ def test_clean_data():
     Check the type of the outputs, and that the features and labels are same as the input.
     '''
     features, labels = ul.clean_data(raw_data)
-    right_features =['Age','Cholesterol','FastingBS','HeartDisease','MaxHR','Oldpeak','RestingBP','Sex_F','Sex_M',
-        'ChestPainType_ASY','ChestPainType_ATA','ChestPainType_NAP','ChestPainType_TA','RestingECG_LVH',
-        'RestingECG_Normal','RestingECG_ST','ExerciseAngina_N','ExerciseAngina_Y','ST_Slope_Down','ST_Slope_Flat']
+    right_features =['Age',
+				 'Cholesterol',
+				 'FastingBS',
+				 'MaxHR',
+				 'Oldpeak',
+				 'RestingBP',
+				 'Sex_F',
+				 'Sex_M',
+				 'ChestPainType_ASY',
+				 'ChestPainType_ATA',
+				 'ChestPainType_NAP',
+				 'ChestPainType_TA',
+				 'RestingECG_LVH',
+				 'RestingECG_Normal',
+				 'RestingECG_ST',
+				 'ExerciseAngina_N',
+				 'ExerciseAngina_Y',
+				 'ST_Slope_Down',
+				 'ST_Slope_Flat',
+				 'ST_Slope_Up']
     
     assert type(features) == pd.DataFrame
     assert type(labels) == pd.core.series.Series
@@ -64,7 +81,7 @@ def test_clean_data():
     assert raw_data['HeartDisease'].astype(float).equals(labels)
 
 logisticRegr, clf, RF = ul.fit_models(x_train, y_train, x_test, y_test)
-best_model, best_test_predictions, best_model_name = ul.choose_best_model(logisticRegr, clf, RF)
+best_model, best_test_predictions, best_model_name = ul.choose_best_model(logisticRegr, clf, RF, x_test, y_test)
     ### doesn't actually work, but think it is a problem in utils
     
 def test_fit_models():
@@ -87,5 +104,5 @@ def test_graph_confusion_roc():
     '''
     Check that the figure was saved in the figures folder, and it is named correctly.
     '''
-    assert os.path.exists('../figures/'+ best_model_name + '_ROC_curve')
-    
+    ul.graph_confusion_roc(best_model, x_test, y_test, best_test_predictions, best_model_name, root_dir = '.')
+    assert os.path.exists('./figures/'+ best_model_name + '_ROC_curve.png')
