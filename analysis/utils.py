@@ -38,7 +38,11 @@ def clean_data(raw_data):
     min_max_scaler = preprocessing.MinMaxScaler()
     x_scaled = min_max_scaler.fit_transform(x)
     df = pd.DataFrame(x_scaled, columns = modified_df.columns)
-    features = df.columns[:-1]
+    features = features = ['Age', 'Cholesterol', 'FastingBS', 'MaxHR', 'Oldpeak',
+       'RestingBP', 'Sex_F', 'Sex_M', 'ChestPainType_ASY', 'ChestPainType_ATA',
+       'ChestPainType_NAP', 'ChestPainType_TA', 'RestingECG_LVH',
+       'RestingECG_Normal', 'RestingECG_ST', 'ExerciseAngina_N',
+       'ExerciseAngina_Y', 'ST_Slope_Down', 'ST_Slope_Flat', 'ST_Slope_Up']
     return df[features], df['HeartDisease']
 
 
@@ -73,6 +77,8 @@ def choose_best_model(logisticRegr, clf, RF, x_test, y_test):
     
     inputs:
         - 3 models: logisticRegr, clf, RF
+		- x_test
+		- y_test
     outputs:
         - best_model = given by choose_best_model
 		- best_test_predictions = list of test predictions given by best model
@@ -111,7 +117,7 @@ def graph_confusion_roc(best_model, x_test, y_test, best_test_predictions, best_
 		- best_model_name = str of name of best model
 		- x_test
 		- y_test
-		- root_dir = str of root directory 
+		- root_dir = str of root directory to save the figure to
     outputs:
         - graph of roc curve, saved to root_dir/figures
         - graph of confusion matrix, saved to root_dir/figures
