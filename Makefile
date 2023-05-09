@@ -21,4 +21,4 @@ html:
 .PHONY : all
 all :
 	jupyter execute main.ipynb
-    # jupyter nbconvert --to notebook --execute main.ipynb --output main.ipynb
+    # jupyter nbconvert --to notebook --execute main.ipynb --
