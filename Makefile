@@ -20,4 +20,5 @@ html:
 ## all : Run all notebooks
 .PHONY : all
 all :
-	jupyter run main.ipynb
+	jupyter execute main.ipynb
+    # jupyter nbconvert --to notebook --execute main.ipynb --output main.ipynb
