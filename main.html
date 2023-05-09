@@ -352,6 +352,8 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#purpose">Purpose</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocess-data">Preprocess data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modeling">Modeling</a></li>
 </ul>
             </nav>
         </div>
@@ -504,6 +506,112 @@ document.write(`
 </table>
 </div></div></div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">analysis</span> <span class="kn">import</span> <span class="n">utils</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="preprocess-data">
+<h2>Preprocess data<a class="headerlink" href="#preprocess-data" title="Permalink to this heading">#</a></h2>
+<p>We import util functions from <a class="reference external" href="http://util.py">util.py</a> to clean the data. This  function one hot encodes the categorical columns, and uses sklearn’s preprocessing function MinMaxScaler() to scale the data. It returns the X dataframe with all the features, and and labels y.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">clean_data</span><span class="p">(</span><span class="n">raw_data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/srv/conda/envs/notebook/lib/python3.10/site-packages/sklearn/preprocessing/_encoders.py:808: FutureWarning: `sparse` was renamed to `sparse_output` in version 1.2 and will be removed in 1.4. `sparse_output` is ignored unless you leave `sparse` to its default value.
+  warnings.warn(
+</pre></div>
+</div>
+</div>
+</div>
+<p>We inspect the columns/features</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">list</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Age&#39;,
+ &#39;Cholesterol&#39;,
+ &#39;FastingBS&#39;,
+ &#39;MaxHR&#39;,
+ &#39;Oldpeak&#39;,
+ &#39;RestingBP&#39;,
+ &#39;Sex_F&#39;,
+ &#39;Sex_M&#39;,
+ &#39;ChestPainType_ASY&#39;,
+ &#39;ChestPainType_ATA&#39;,
+ &#39;ChestPainType_NAP&#39;,
+ &#39;ChestPainType_TA&#39;,
+ &#39;RestingECG_LVH&#39;,
+ &#39;RestingECG_Normal&#39;,
+ &#39;RestingECG_ST&#39;,
+ &#39;ExerciseAngina_N&#39;,
+ &#39;ExerciseAngina_Y&#39;,
+ &#39;ST_Slope_Down&#39;,
+ &#39;ST_Slope_Flat&#39;,
+ &#39;ST_Slope_Up&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<p>We then split the data into train and test sets.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="n">x_train</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="modeling">
+<h2>Modeling<a class="headerlink" href="#modeling" title="Permalink to this heading">#</a></h2>
+<p>We fit logistic regression, mlp, and random forest models using x_train and y_train, then choose the best model based on the model test accuracies. We then plot the roc curve and saves the roc cure to the folder ./figures.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">logisticRegr</span><span class="p">,</span> <span class="n">clf</span><span class="p">,</span> <span class="n">RF</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">fit_models</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/srv/conda/envs/notebook/lib/python3.10/site-packages/sklearn/neural_network/_multilayer_perceptron.py:679: ConvergenceWarning: Stochastic Optimizer: Maximum iterations (300) reached and the optimization hasn&#39;t converged yet.
+  warnings.warn(
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">best_model</span><span class="p">,</span> <span class="n">best_test_predictions</span><span class="p">,</span> <span class="n">best_model_name</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">choose_best_model</span><span class="p">(</span><span class="n">logisticRegr</span><span class="p">,</span> <span class="n">clf</span><span class="p">,</span> <span class="n">RF</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">utils</span><span class="o">.</span><span class="n">graph_confusion_roc</span><span class="p">(</span><span class="n">best_model</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">best_test_predictions</span><span class="p">,</span> <span class="n">best_model_name</span><span class="p">,</span> <span class="n">root_dir</span> <span class="o">=</span> <span class="s1">&#39;.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best Model is: mlp
+</pre></div>
+</div>
+<img alt="_images/eb8c509e2ab5f8db39e27f92fd80efe6af0530aad55d7349bec413c85e4f01e3.png" src="_images/eb8c509e2ab5f8db39e27f92fd80efe6af0530aad55d7349bec413c85e4f01e3.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best model AUC is: 0.8580729166666667
+</pre></div>
+</div>
+<img alt="_images/9bb0bb6f73889a301ff56a9f54a2e69e10656c12649ca6b44a94c4e07aaa9687.png" src="_images/9bb0bb6f73889a301ff56a9f54a2e69e10656c12649ca6b44a94c4e07aaa9687.png" />
+</div>
+</div>
 </section>
 <div class="toctree-wrapper compound">
 </div>
@@ -518,16 +626,16 @@ document.write(`
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "notebook"
         },
         kernelOptions: {
-            name: "python3",
+            name: "notebook",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'notebook'</script>
 
                 </article>
               
@@ -568,6 +676,8 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#purpose">Purpose</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocess-data">Preprocess data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modeling">Modeling</a></li>
 </ul>
   </nav></div>
 
