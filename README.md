@@ -7,6 +7,8 @@ Jupyter book: https://ucb-stat-159-s23.github.io/project-Group21/main.html
 
 The purpose of this project is to analyze the prediction of Heart failure. Cardiovascular diseases (CVDs) are the number 1 cause of death globally, taking an estimated 17.9 million lives each year, which accounts for 31% of all deaths worldwide. Four out of 5CVD deaths are due to heart attacks and strokes, and one-third of these deaths occur prematurely in people under 70 years of age. Heart failure is a common event caused by CVDs and this dataset contains 11 features that can be used to predict a possible heart disease. People with cardiovascular disease or who are at high cardiovascular risk (due to the presence of one or more risk factors such as hypertension, diabetes, hyperlipidaemia or already established disease) need early detection and management wherein a machine learning model can be of great help.
 
+In this project, we conduct EDA analyses of the dataset, and apply various models to predict heart disease.
+
 ## Authors
 Group 21: Hannah Cooper, Joselin Hartanto, Nancy Xu, James Xu
 
