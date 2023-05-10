@@ -351,14 +351,22 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Heart Failure Prediction</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#purpose">Purpose</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eda">EDA</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-from-https-www-kaggle-com-datasets-fedesoriano-heart-failure-prediction">Data from https://www.kaggle.com/datasets/fedesoriano/heart-failure-prediction</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocess-data">Preprocess data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modeling">Modeling</a></li>
 </ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#modeling">Modeling</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocess-data">Preprocess data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Modeling</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#author-contributions">Author Contributions</a></li>
+</ul>
+
             </nav>
         </div>
     </div>
@@ -396,6 +404,17 @@ document.write(`
 </div>
 <section id="data-from-https-www-kaggle-com-datasets-fedesoriano-heart-failure-prediction">
 <h3>Data from <a class="reference external" href="https://www.kaggle.com/datasets/fedesoriano/heart-failure-prediction">https://www.kaggle.com/datasets/fedesoriano/heart-failure-prediction</a><a class="headerlink" href="#data-from-https-www-kaggle-com-datasets-fedesoriano-heart-failure-prediction" title="Permalink to this heading">#</a></h3>
+<p>This dataset was created by combining different datasets already available independently but not combined before. In this dataset, 5 heart datasets are combined over 11 common features which makes it the largest heart disease dataset available so far for research purposes. The five datasets used for its curation are:</p>
+<ul class="simple">
+<li><p>Cleveland: 303 observations</p></li>
+<li><p>Hungarian: 294 observations</p></li>
+<li><p>Switzerland: 123 observations</p></li>
+<li><p>Long Beach VA: 200 observations</p></li>
+<li><p>Stalog (Heart) Data Set: 270 observations</p></li>
+</ul>
+<p>Total: 1190 observations,
+Duplicated: 272 observations,
+Final dataset: 918 observations</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import raw data</span>
@@ -768,6 +787,10 @@ dtype: int64
 <p>We note that the cumulative sum of variance is distributed relatively evenly among the principal components. We note that 5 principal components explains around 85% of the variability in the non categorical data.</p>
 </section>
 </section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="modeling">
+<h1>Modeling<a class="headerlink" href="#modeling" title="Permalink to this heading">#</a></h1>
+<p>In this section, we will preprocess the data and apply various models to predict whether someone has heart disease based on the attributes in the data.</p>
 <section id="preprocess-data">
 <h2>Preprocess data<a class="headerlink" href="#preprocess-data" title="Permalink to this heading">#</a></h2>
 <div class="cell docutils container">
@@ -833,9 +856,10 @@ dtype: int64
 </div>
 </div>
 </section>
-<section id="modeling">
-<h2>Modeling<a class="headerlink" href="#modeling" title="Permalink to this heading">#</a></h2>
+<section id="id1">
+<h2>Modeling<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
 <p>We fit logistic regression, mlp, and random forest models using x_train and y_train, then choose the best model based on the model test accuracies. We then plot the roc curve and saves the roc cure to the folder ./figures.</p>
+<p>The main question we want to focus on is: can models prioritize recall over precision? In the case of predicting heart disease, we care more about FN than FP, since we want to identify as many actual cases of heart disease as possible. This preference would determine how we create the threshold for classification, which we will discuss later.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">logisticRegr</span><span class="p">,</span> <span class="n">clf</span><span class="p">,</span> <span class="n">RF</span> <span class="o">=</span> <span class="n">utils</span><span class="o">.</span><span class="n">fit_models</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span>
@@ -878,6 +902,10 @@ Best model AUC is: 0.8617078205030198
 </div>
 <p>We see that there are more FP than FN, and that although they are pretty close, recall is less than the precision. In our case of predicting heart disease, we probably want to prioritize recall, since we want to detect as many positive cases of heart disease as possible. In other words, we care more about the FN than the FP. Thus we would want to set the threshold to be lower than 0.5 to maximize the recall. Additionally, we could also try to inspect the data that are FN to try to identify a pattern, and then we could augment the training set with these FN’s so that the model will learn to better identify positive cases.</p>
 </section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="author-contributions">
+<h1>Author Contributions<a class="headerlink" href="#author-contributions" title="Permalink to this heading">#</a></h1>
+<p>Hannah Cooper created the tests for the data preprocessing modeling functions, the license for the project, and created the makefile. Joseline Hartanto created the environment yml file, jupyter book, binder, and contributed to main.ipynb file. James Xu created the notebook for EDA + data cleaning + processing with the corresponding functions, contributed to main.ipynb file, and helped with reproducibility support. Nancy Xu created the notebook for modeling, contributed to main.ipynb file, and helped with testing functions.</p>
 <div class="toctree-wrapper compound">
 </div>
 </section>
@@ -940,14 +968,22 @@ Best model AUC is: 0.8617078205030198
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Heart Failure Prediction</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#purpose">Purpose</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eda">EDA</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-from-https-www-kaggle-com-datasets-fedesoriano-heart-failure-prediction">Data from https://www.kaggle.com/datasets/fedesoriano/heart-failure-prediction</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocess-data">Preprocess data</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modeling">Modeling</a></li>
 </ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#modeling">Modeling</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocess-data">Preprocess data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Modeling</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#author-contributions">Author Contributions</a></li>
+</ul>
+
   </nav></div>
 
 </div></div>
