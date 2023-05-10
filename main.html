@@ -371,7 +371,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="heart-failure-prediction">
 <h1>Heart Failure Prediction<a class="headerlink" href="#heart-failure-prediction" title="Permalink to this heading">#</a></h1>
-<p><strong>Project by Group 21: Hannah Cooper, Joselin Hartanto, Nancy Xu, , James Xu</strong></p>
+<p><strong>Project by Group 21: Hannah Cooper, Joselin Hartanto, Nancy Xu, James Xu</strong></p>
 <p><a class="reference external" href="https://mybinder.org/v2/gh/UCB-stat-159-s23/project-Group21.git/HEAD"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
 <section id="purpose">
 <h2>Purpose<a class="headerlink" href="#purpose" title="Permalink to this heading">#</a></h2>
@@ -863,16 +863,20 @@ dtype: int64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best Model is: mlp
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best Model is: logistic regression
+Recall is: 0.8439716312056738
+Precision is: 0.937007874015748
 </pre></div>
 </div>
-<img alt="_images/eb8c509e2ab5f8db39e27f92fd80efe6af0530aad55d7349bec413c85e4f01e3.png" src="_images/eb8c509e2ab5f8db39e27f92fd80efe6af0530aad55d7349bec413c85e4f01e3.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best model AUC is: 0.8580729166666667
+<img alt="_images/0f078d4cc9e93a6ae3acd0ed6b5694b1f184f53e0cbe979d3dd1fc0ebd25b6b8.png" src="_images/0f078d4cc9e93a6ae3acd0ed6b5694b1f184f53e0cbe979d3dd1fc0ebd25b6b8.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Best Threshold=1.000000
+Best model AUC is: 0.8617078205030198
 </pre></div>
 </div>
-<img alt="_images/9bb0bb6f73889a301ff56a9f54a2e69e10656c12649ca6b44a94c4e07aaa9687.png" src="_images/9bb0bb6f73889a301ff56a9f54a2e69e10656c12649ca6b44a94c4e07aaa9687.png" />
+<img alt="_images/72db40e13bae22378dc67191b29abaa1534e730d7aaf65604648e820b8892881.png" src="_images/72db40e13bae22378dc67191b29abaa1534e730d7aaf65604648e820b8892881.png" />
 </div>
 </div>
+<p>We see that there are more FP than FN, and that although they are pretty close, recall is less than the precision. In our case of predicting heart disease, we probably want to prioritize recall, since we want to detect as many positive cases of heart disease as possible. In other words, we care more about the FN than the FP. Thus we would want to set the threshold to be lower than 0.5 to maximize the recall. Additionally, we could also try to inspect the data that are FN to try to identify a pattern, and then we could augment the training set with these FN’s so that the model will learn to better identify positive cases.</p>
 </section>
 <div class="toctree-wrapper compound">
 </div>
@@ -887,16 +891,16 @@ dtype: int64
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "makeproject21"
+            mode: "notebook"
         },
         kernelOptions: {
-            name: "makeproject21",
+            name: "notebook",
             path: "./."
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'makeproject21'</script>
+    <script>kernelName = 'notebook'</script>
 
                 </article>
               
