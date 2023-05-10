@@ -21,6 +21,7 @@ import seaborn as sns
 from sklearn import metrics
 import os
 from os.path import exists
+from sklearn.metrics import recall_score, precision_score
 
 
 # read in data and add code that is necessary to test fit_models function

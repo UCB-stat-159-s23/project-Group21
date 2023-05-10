@@ -15,6 +15,7 @@ from sklearn.ensemble import RandomForestClassifier
 import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn import metrics
+from sklearn.metrics import recall_score, precision_score
 
 
 def clean_data(raw_data):
@@ -106,6 +107,7 @@ def choose_best_model(logisticRegr, clf, RF, x_test, y_test):
     
 
 	
+
 def graph_confusion_roc(best_model, x_test, y_test, best_test_predictions, best_model_name, root_dir ):
     '''
     this function
@@ -117,7 +119,7 @@ def graph_confusion_roc(best_model, x_test, y_test, best_test_predictions, best_
 		- best_model_name = str of name of best model
 		- x_test
 		- y_test
-		- root_dir = str of root directory to save the figure to
+		- root_dir = str of root directory 
     outputs:
         - graph of roc curve, saved to root_dir/figures
         - graph of confusion matrix, saved to root_dir/figures
@@ -127,6 +129,11 @@ def graph_confusion_roc(best_model, x_test, y_test, best_test_predictions, best_
 
     print('Best Model is: {0}'.format(best_model_name))
     cm = metrics.confusion_matrix(y_test, best_test_predictions)
+    
+
+    
+    print('Recall is: {0}'.format(recall_score(best_test_predictions, y_test)))
+    print('Precision is: {0}'.format(precision_score(best_test_predictions, y_test)))
     
     plt.figure(figsize=(9,9))
     sns.heatmap(cm, annot=True, fmt=".3f", linewidths=.5, square = True, cmap = 'Blues_r')
@@ -141,11 +148,17 @@ def graph_confusion_roc(best_model, x_test, y_test, best_test_predictions, best_
 
     
     fpr, tpr, thresholds = metrics.roc_curve(list(y_test), best_test_predictions)
+    J = tpr - fpr
+    ix = np.argmax(J)
+    best_thresh = thresholds[ix]
+    print('Best Threshold=%f' % (best_thresh))
+
     print( "Best model AUC is: {0}".format(metrics.auc(fpr, tpr)))
     plt.plot(fpr, tpr)
     plt.title("ROC curve")
     plt.xlabel("TPR")
     plt.ylabel("FPR")
+    plt.scatter(fpr[ix], tpr[ix], marker='o', color='black', label='Best')
     plt.savefig(root_dir + '/figures/'+ best_model_name + '_ROC_curve')
     plt.show()
     
