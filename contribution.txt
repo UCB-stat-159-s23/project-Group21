@@ -11,8 +11,8 @@ Hannah: Testing
 license for the project
 make file
 
-Joselin:
-Jupyter book
-environment .yml file
-help make the main.ipynb file
-binder at the end
+Joselin Hartanto:
+- environment .yml file
+- Jupyter book
+- binder
+- contribute in main.ipynb file
