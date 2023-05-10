@@ -7,9 +7,10 @@ Choose the best model function
 Write up the modeling notebook commentary
 Work with Hannah on the tests
 
-Hannah: Testing 
-license for the project
-make file
+Hannah Cooper: 
+- create tests
+- license for the project
+- create the makefile
 
 Joselin Hartanto:
 - environment .yml file
