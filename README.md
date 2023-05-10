@@ -39,3 +39,6 @@ Build the jupyter book: `make html`
 
 ## Testing
 To test the `analysis/utils.py` functions, navigate to the root directory and run `pytest`
+
+## License
+The project is released under the BSD 3-clause License.
