@@ -327,7 +327,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -343,6 +345,18 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#authors">Authors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data">Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis">Analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing">Testing</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -356,7 +370,43 @@ document.write(`
 <section class="tex2jax_ignore mathjax_ignore" id="a-study-of-a-heart-failure-prediction-dataset">
 <h1>A Study of a Heart Failure Prediction Dataset<a class="headerlink" href="#a-study-of-a-heart-failure-prediction-dataset" title="Permalink to this heading">#</a></h1>
 <p><a class="reference external" href="https://mybinder.org/v2/gh/UCB-stat-159-s23/project-Group21.git/HEAD"><img alt="Binder" src="https://mybinder.org/badge_logo.svg" /></a></p>
+<p>Jupyter book: <a class="reference external" href="https://ucb-stat-159-s23.github.io/project-Group21/main.html">https://ucb-stat-159-s23.github.io/project-Group21/main.html</a></p>
 <p>The purpose of this project is to analyze the prediction of Heart failure. Cardiovascular diseases (CVDs) are the number 1 cause of death globally, taking an estimated 17.9 million lives each year, which accounts for 31% of all deaths worldwide. Four out of 5CVD deaths are due to heart attacks and strokes, and one-third of these deaths occur prematurely in people under 70 years of age. Heart failure is a common event caused by CVDs and this dataset contains 11 features that can be used to predict a possible heart disease. People with cardiovascular disease or who are at high cardiovascular risk (due to the presence of one or more risk factors such as hypertension, diabetes, hyperlipidaemia or already established disease) need early detection and management wherein a machine learning model can be of great help.</p>
+<section id="authors">
+<h2>Authors<a class="headerlink" href="#authors" title="Permalink to this heading">#</a></h2>
+<p>Group 21: Hannah Cooper, Joselin Hartanto, Nancy Xu, James Xu</p>
+</section>
+<section id="data">
+<h2>Data<a class="headerlink" href="#data" title="Permalink to this heading">#</a></h2>
+<p>Data sourced from <a class="reference external" href="https://www.kaggle.com/datasets/fedesoriano/heart-failure-prediction">https://www.kaggle.com/datasets/fedesoriano/heart-failure-prediction</a>. This dataset was created by combining different datasets already available independently but not combined before. In this dataset, 5 heart datasets are combined over 11 common features which makes it the largest heart disease dataset available so far for research purposes. The five datasets used for its curation are:</p>
+<ul class="simple">
+<li><p>Cleveland: 303 observations</p></li>
+<li><p>Hungarian: 294 observations</p></li>
+<li><p>Switzerland: 123 observations</p></li>
+<li><p>Long Beach VA: 200 observations</p></li>
+<li><p>Stalog (Heart) Data Set: 270 observations</p></li>
+</ul>
+<p>Total: 1190 observations, Duplicated: 272 observations, Final dataset: 918 observations</p>
+</section>
+<section id="analysis">
+<h2>Analysis<a class="headerlink" href="#analysis" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">main.ipynb</span></code> : main narrative notebook that summarizes the results for EDA and modeling</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">eda.ipynb</span></code> : notebook and functions for EDA analyses and data cleaning</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">modeling.ipynb</span></code> : notebook and functions for modeling to predict heart disease</p></li>
+</ul>
+</section>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">#</a></h2>
+<p>To install the package, follow the command on your terminal:</p>
+<p>Create the environment: <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">env</span></code></p>
+<p>Run all notebooks: <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">all</span></code></p>
+<p>Build the jupyter book: <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">html</span></code></p>
+</section>
+<section id="testing">
+<h2>Testing<a class="headerlink" href="#testing" title="Permalink to this heading">#</a></h2>
+<p>To test the <code class="docutils literal notranslate"><span class="pre">analysis/utils.py</span></code> functions, navigate to the root directory and run <code class="docutils literal notranslate"><span class="pre">pytest</span></code></p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -399,6 +449,24 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#authors">Authors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data">Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysis">Analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation">Installation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing">Testing</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
